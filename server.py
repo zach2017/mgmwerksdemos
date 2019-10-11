@@ -17,21 +17,11 @@ def handle_client_connection(client_socket):
     survey = str(request)
     results = survey.replace('\\n', '\n')
     i = 0
-    for line in results.split('\n'):
-        i = i + 1
-        #print(str(i) + ": " + line)
-        if ( i == 8 ):
-          jdata = json.loads(str(line))
-          formrep = jdata["form_response"]["answers"]
-          for i in range(len(formrep)):
-             if ( formrep[i]["type"] == "text" ):
-                 print(str(formrep[i]["text"]))
-             else:
-                 print(str(formrep[i]["choice"]["label"]))
-     
-    #client_socket.send('ACK!')
+    print(results);
+    
+
     response_body = [
-            '<html><body><h1>Hello, world!</h1>'
+            '<html><body><h1>Hello, world!</h1><PRE>' + results
         ]
     response_headers = {
             'Content-Type': 'text/html; encoding=utf8',
